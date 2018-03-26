@@ -2,7 +2,7 @@ End to End Privacy Enabled Mapping System Problem Statement
 
 Identifier Locator Systems like ILA, ILNP and LISP are proposed as a revolutionary approach to enabling direct routing in the upcoming 5G core network (5GC) rather than using tunneling with GTP-U. However with the Id-Loc systems a mapping system needs to be established so that 5GC nodes can access the identifier and locator values of the destination given the source identifier and locator values to enable them to route the packet towards the destination. With mapping systems the question of privacy comes up. For example if a public distributed database such as the DNS is used then any node in the internet can query and track the location of the roaming UEs in 5G network which is not desirable.
 
-We will look into the currently proposed approaches to mapping systems and identify the gaps: 
+These are the currently proposed approaches to mapping systems: 
 
 1.	ILNP defines in RFC 6748 source locator and identifier privacy solutions. Source locator privacy can be preserved by the use of Locator Rewriting Relays  (LRR) on the path from the source to the destination., e.g. when UE is in communication with a server like Google server. LRR is charged with replacing the source locator value with a different value to enable the return packet also go through LRR so that LRR can rewrite the return packet and place back the source locator. For source identifier privacy, ILNP provides the possibility of cryptographically verifiable identifier values or use identifier values that provide a level of anonymity. 
 However in ILNP, the identifier locator values are stored in DNS which is a public data store. If the source identifier is known to an unauthorized entity the location of the source can be easily tracked. Also there are concerns on the write operation efficiency for DNS datastore in the face of 5G level handovers.
@@ -15,7 +15,7 @@ However in LISP the identifier locator values are stored in DNS-like datastore, 
 
 
 
-We identify the following gaps:
+These are the gaps:
 
 The use of new type of databases known as NoSQL databases organized as Key-value stores or mapping systems. Such databases will provide very efficient read and writes unlike DNS. NoSQL mapping systems mostly support a message-oriented middleware system called publish-subscribe or PubSub. In PubSub, publishers are loosely coupled to subscribers and offer better scalability than traditional client-server systems because of parallel operation, message caching and network based message routing.
 
