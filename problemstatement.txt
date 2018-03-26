@@ -1,0 +1,24 @@
+End to End Privacy Enabled Mapping System Problem Statement
+
+Identifier Locator Systems like ILA, ILNP and LISP are proposed as a revolutionary approach to enabling direct routing in the upcoming 5G core network (5GC) rather than using tunneling with GTP-U. However with the Id-Loc systems a mapping system needs to be established so that 5GC nodes can access the identifier and locator values of the destination given the source identifier and locator values to enable them to route the packet towards the destination. With mapping systems the question of privacy comes up. For example if a public distributed database such as the DNS is used then any node in the internet can query and track the location of the roaming UEs in 5G network which is not desirable.
+
+We will look into the currently proposed approaches to mapping systems and identify the gaps: 
+
+1.	ILNP defines in RFC 6748 source locator and identifier privacy solutions. Source locator privacy can be preserved by the use of Locator Rewriting Relays  (LRR) on the path from the source to the destination., e.g. when UE is in communication with a server like Google server. LRR is charged with replacing the source locator value with a different value to enable the return packet also go through LRR so that LRR can rewrite the return packet and place back the source locator. For source identifier privacy, ILNP provides the possibility of cryptographically verifiable identifier values or use identifier values that provide a level of anonymity. 
+However in ILNP, the identifier locator values are stored in DNS which is a public data store. If the source identifier is known to an unauthorized entity the location of the source can be easily tracked. Also there are concerns on the write operation efficiency for DNS datastore in the face of 5G level handovers.
+
+2.	LISP defined in RFC6833 Map-Server interface, i.e. the mapping control plane protocol which is modeled after DNS. There is a MAP Server which is similar to DNS Server which publishes identifier locator values in a mapping database. There is Map-Resolver which is similar to DNS resolver which accepts Map-Request messages for the identifier and returns the corresponding identifier locator mapping by consulting mapping database system in a Map-Reply message. Map-Server receives Map-Request messages to register identifier and associated locator values to be registered into the mapping database. It responds them with Map-Reply messages. All messages defined in the control plane are UDP messages.
+However in LISP the identifier locator values are stored in DNS-like datastore, called Alternative Logical Topology which is modeled after DNS, so similar concerns on the efficiency of write operations and unauthorized access for a given identifier value exist. 
+
+3.	ILA assumes a mapping system that contains identifier locator values but since ILA currently does not define any control plane, no other details have been defined. Privacy is addressed by way of UE changing its address regularly by using a block of addresses. It is observed that NAT can also provide address privacy but the use of NAT is discouraged in IETF. Also UE needs to reestablish connections every time it changes it address so it incurs delays which could be significant in case of real-time communication.
+
+
+
+
+We identify the following gaps:
+
+The use of new type of databases known as NoSQL databases organized as Key-value stores or mapping systems. Such databases will provide very efficient read and writes unlike DNS. NoSQL mapping systems mostly support a message-oriented middleware system called publish-subscribe or PubSub. In PubSub, publishers are loosely coupled to subscribers and offer better scalability than traditional client-server systems because of parallel operation, message caching and network based message routing.
+
+What is stored in the mapping system is limited to the identifier and locator values and no considerations to provide privacy of the stored data.
+
+There are many privacy improving mechanisms defined like locator/identifier privacy, address changing, etc. Each of these techniques can be used by any Id-loc system. There is a need to standardize these privacy techniques in order to enable wide scale use by the end nodes.
