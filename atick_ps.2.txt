@@ -1,0 +1,33 @@
+End to End Privacy Enabled Mapping System Problem Statement
+
+Current 4G and the upcoming converged communication network of 5G core network (5GC) make use of tunneling with anchor points to handle mobility, policy and other things. The use of IP addresses induces the topology and enables easy location tracking. Elimination or reduction of anchor points, as well as disassociating topology from IP addresses to facilitate efficient mobility and user privacy using Identifier Locator separation systems like ILA, ILNP, and LISP is needed. We shortly mention other issues of tunneling here. In addition to increasing packet overhead due to encapsulation that may cause fragmentation and all related issues typical disadvantages of (especially static end-to-end) tunneling comprise inflexibility to properly react to dynamic changes of end points and potential on-path anchors which is required to support mobility. Added complexity in case of multicast traffic and increased signaling for tunnel management are further drawbacks. Tunnels may introduce vulnerabilities (e.g. in terms of attack risks at the anchor points or reduced user privacy by association between address and topology) or add to the potential for receiver overload and thus DOS attacks [draft-ietf-intarea-tunnels-08]. Finally without other measures such as deep packet inspection optimization of paths according to network resources and application needs becomes complex. 
+
+
+Identifier represents a communication end-point of an entity and may not be routable. Locator also represents a communication end point, i.e. its routable network address and thus can change if the entity moves. A database called a mapping system needs to be used for identifier to locator mapping. Identifiers are mapped to locators for forwarding purposes. Mapping system has to handle mobility by modifying identifier to locator mappings in the database.
+
+
+To start the communication, a device needs to know the identifier of the destination and then relies on a process to lookup on a network identifier and return the locator(s). Note that both identifier and locator can be carried in clear in packet headers. 
+
+Usage of identifiers readily available for public access raises privacy issues. For public entities, it may be desirable to have their fully qualified domain names or host names available for public lookups by the clients however such is not the case in general for the identifiers, e.g. for individuals roaming in a mobile network.
+
+This document describes the problem statement for a new kind of mapping system to be used by identifier locator separation systems (Id-Loc) that are end to end privacy enabled. 
+
+Access to a mapping system should not reveal the location about an entity to the unauthorized requestor of a look up on an identifier. Tracking of the identifiers of an entity and mounting attacks based on that should be avoided. On the other hand discovery by the entities that are allowed to should not be made difficult. This may be possible by using encryption effectively in the control plane mechanisms to avoid eavesdroppers to access such information [draft-padma-ideas-problem-statement-03]. 
+
+If locators/ addresses (or device prefixes) are common between flows for a given entity then a
+third party can make inferences (i.e. whether they are sourced from the
+same host). This points to the problem of persistent identifiers which should be avoided. 
+
+If locators/ addresses contain fine grained topology then device location (and
+hence user location) can be inferred. This
+gets to the problem that locators may contain detailed geographic location information 
+and hence are very sensitive data. This points to the need for using identifier locator separation. 
+
+If a cache is introduced into the data path (as might be the case in
+some mapping systems) then that in turn will introduce potential DOS
+attacks in order to slow down or even completely stop the communication. So proper protocol actions should be taken against DOS attacks.
+
+Compromise of a mapping system is very bad since it would allow
+attackers to take control of traffic and to misdirect it. 
+
+
