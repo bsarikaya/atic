@@ -1,0 +1,19 @@
+Secure End to End Privacy Enabled Mapping System Requirements
+
+Privacy Requirements 
+
+A privacy enabled mapping system is needed to map identifier to locator
+Access to the mapping system must be done only by authorized entities
+Data stored in the mapping system must contain user preferences to enable privacy checking during access
+
+
+Security Requirements
+
+Mapping system must mitigate DOS attacks
+
+Addressing Requirements
+
+IP addresses should not expose specific geo-location of users.
+
+
+
